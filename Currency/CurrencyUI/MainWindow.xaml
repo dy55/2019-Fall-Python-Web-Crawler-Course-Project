@@ -1,0 +1,52 @@
+﻿<Window x:Class="CurrencyUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CurrencyUI"
+        mc:Ignorable="d"
+        Title="汇率转换与统计工具" Height="450" Width="450"
+		FontFamily="DengXian, Microsoft Yahei UI, 宋体">
+	<Grid Style="{StaticResource gridStyle1}">
+		<Menu Style="{StaticResource menuStyle1}">
+			<MenuItem Header="文件(_F)" Style="{StaticResource menuItemStyle}">
+				<MenuItem x:Name="CloseItem" Header="关闭(_C)" Click="Close_Click"/>
+			</MenuItem>
+			<MenuItem Header="视图(_V)" Style="{StaticResource menuItemStyle}">
+				<MenuItem Name="StatView" Header="汇率概览(_B)" Click="StatView_Click"></MenuItem>
+				<MenuItem Name="StatTrend" Header="汇率趋势(_T)" Click="StatTrend_Click"></MenuItem>
+			</MenuItem>
+			<MenuItem Header="关于(_A)" Style="{StaticResource menuItemStyle}">
+				<MenuItem Name="HelpItem" Header="帮助(_H)" Click="HelpItem_Click"/>
+				<MenuItem x:Name="AboutItem" Click="AboutItem_Click" Header="关于(_A)"></MenuItem>
+			</MenuItem>
+		</Menu>
+
+		<StackPanel Margin="123,100,123,29">
+			<DockPanel>
+				<Label Name="fromExEng" Content="" DockPanel.Dock="Right" Width="40" Style="{StaticResource engNameLableStyle}"/>
+				<ComboBox Name="fromCombo" Style="{StaticResource comboStyle}" DockPanel.Dock="Left" SelectionChanged="fromCombo_SelectionChanged"/>
+			</DockPanel>
+			<TextBox Name="fromBox" Padding="0 5" TextChanged="FromBox_TextChanged"/>
+			<Label HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="reverse" Content="↓" Margin="50 30" Height="50" FontSize="35" FontWeight="Bold" Foreground="ForestGreen"/>
+			<DockPanel>
+				<Label Content="" Name="toExEng" DockPanel.Dock="Right" Width="40" Style="{StaticResource engNameLableStyle}"/>
+				<ComboBox Name="toCombo" Style="{StaticResource comboStyle}" DockPanel.Dock="Left" SelectionChanged="toCombo_SelectionChanged"/>
+			</DockPanel>
+			<TextBlock x:Name="toBox" Padding="0 5" Background="White" IsEnabled="False"/>
+			<Label x:Name="ExchangeLbl" Content="" Loaded="ExchangeLbl_Loaded"/>
+			<Button Name="SearchBtn" Click="SearchBtn_Click" Content="查询" HorizontalAlignment="Right" Style="{StaticResource btnStyle1}">
+			</Button>
+		</StackPanel>
+
+		<StatusBar Style="{StaticResource statusBarStyle1}">
+			<StatusBarItem x:Name="StatusBlock" Content="正在初始化" HorizontalAlignment="Left" Width="120"/>
+			<StatusBarItem HorizontalAlignment="Right">
+				<DockPanel Name="EventBlock" Visibility="Hidden">
+					<Label Name="EventName" Content="" Width="70" VerticalContentAlignment="Center"/>
+					<ProgressBar x:Name="EventProgress" Width="100" Height="12"/>
+				</DockPanel>
+			</StatusBarItem>
+		</StatusBar>
+	</Grid>
+</Window>

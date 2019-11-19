@@ -1,0 +1,86 @@
+﻿<Application x:Class="CurrencyUI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CurrencyUI"
+             StartupUri="MainWindow.xaml">
+	<Application.Resources>
+		<Style x:Key="titleItem" TargetType="ListBoxItem">
+			<Setter Property="Background" Value="Purple"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="FontSize" Value="20"/>
+			<Setter Property="Padding" Value="7"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Foreground" Value="Black"/>
+				</Trigger>
+				<Trigger Property="IsFocused" Value="True">
+					<Setter Property="Foreground" Value="Black"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		<Style x:Key="sectionHeader" TargetType="ListBoxItem">
+			<Setter Property="Background" Value="LightPink"/>
+			<Setter Property="Padding" Value="2"/>
+			<Setter Property="FontSize" Value="15"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		</Style>
+		<Style x:Key="btnStyle1" TargetType="Button">
+			<Setter Property="Background" Value="DarkViolet"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="BorderBrush" Value="Violet"/>
+			<Setter Property="Padding" Value="10 8"/>
+			<Style.Triggers>
+				<Trigger Property="IsMouseOver" Value="True">
+					<Setter Property="Foreground" Value="MediumVioletRed"/>
+					<Setter Property="Cursor" Value="Hand"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		<Style x:Key="menuStyle1" TargetType="Menu">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="White"/>
+						<GradientStop Color="#FFB3F5FF" Offset="1"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="FontFamily" Value="DengXian, Microsoft Yahei UI, 宋体"/>
+			<Setter Property="Padding" Value="0 3"/>
+			<Setter Property="VerticalAlignment" Value="Top"/>
+		</Style>
+		<Style x:Key="gridStyle1" TargetType="Grid">
+			<Setter Property="Background" Value="#FFB3F5FF"/>
+		</Style>
+		<Style x:Key="statusBarStyle1" TargetType="StatusBar">
+			<Setter Property="Background">
+				<Setter.Value>
+					<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+						<GradientStop Color="#FFB3F5FF"/>
+						<GradientStop Color="White" Offset="1"/>
+					</LinearGradientBrush>
+				</Setter.Value>
+			</Setter>
+			<Setter Property="VerticalAlignment" Value="Bottom"/>
+			<Setter Property="FontFamily" Value="DengXian, Microsoft Yahei UI, 宋体"/>
+			<Setter Property="Padding" Value="0 3"/>
+		</Style>
+		<Style x:Key="menuItemStyle" TargetType="MenuItem">
+			<Setter Property="Padding" Value="6 3"/>
+		</Style>
+		<Style x:Key="comboStyle" TargetType="ComboBox">
+			<Setter Property="Padding" Value="6"/>
+		</Style>
+		<Style x:Key="engNameLableStyle" TargetType="Label">
+			<Setter Property="Background" Value="DarkCyan"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="Foreground" Value="White"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+	</Application.Resources>
+</Application>

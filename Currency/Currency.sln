@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurrencyUI", "CurrencyUI\CurrencyUI.csproj", "{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "scripts", "..\CurrencyExchange\scripts\scripts.pyproj", "{1C4A6941-1DE3-4664-AD99-A96DC61B8615}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}.Debug|x64.Build.0 = Debug|Any CPU
+		{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}.Debug|x86.Build.0 = Debug|Any CPU
+		{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}.Release|x64.ActiveCfg = Release|Any CPU
+		{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}.Release|x64.Build.0 = Release|Any CPU
+		{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}.Release|x86.ActiveCfg = Release|Any CPU
+		{F1BC856C-0E0F-49B7-8346-1E7A03030A4B}.Release|x86.Build.0 = Release|Any CPU
+		{1C4A6941-1DE3-4664-AD99-A96DC61B8615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C4A6941-1DE3-4664-AD99-A96DC61B8615}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1C4A6941-1DE3-4664-AD99-A96DC61B8615}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1C4A6941-1DE3-4664-AD99-A96DC61B8615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C4A6941-1DE3-4664-AD99-A96DC61B8615}.Release|x64.ActiveCfg = Release|Any CPU
+		{1C4A6941-1DE3-4664-AD99-A96DC61B8615}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {246C3309-550F-4401-82BE-4B420B0797F8}
+	EndGlobalSection
+EndGlobal

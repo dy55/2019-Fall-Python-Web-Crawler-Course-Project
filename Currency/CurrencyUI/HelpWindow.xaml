@@ -1,0 +1,17 @@
+﻿<Window x:Class="CurrencyUI.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CurrencyUI"
+        mc:Ignorable="d"
+        Title="帮助" Height="265" Width="506" FontFamily="DengXian">
+	<ListBox FontFamily="DengXian, Microsoft Yahei UI, 宋体">
+		<ListBoxItem Content="如何使用汇率转换工具？" Style="{StaticResource titleItem}"/>
+		<ListBoxItem Content="查询" Style="{StaticResource sectionHeader}"/>
+		<ListBoxItem Content="选择货币后输入数值，点击查询"/>
+		<ListBoxItem Content="高级功能" Style="{StaticResource sectionHeader}"/>
+		<ListBoxItem Content="汇率统计"/>
+		<ListBoxItem Content="汇率趋势查询"/>
+	</ListBox>
+</Window>
