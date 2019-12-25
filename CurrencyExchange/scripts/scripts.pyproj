@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Commands.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="currencyKit\CurrencyStatistics.py" />
     <Compile Include="currencyKit\CurrencyTrend.py" />
     <Compile Include="currencyKit\MiscUtils.py">

@@ -10,6 +10,6 @@
 		<ListBoxItem Content="汇率转换与统计工具" Style="{StaticResource titleItem}"/>
 		<ListBoxItem Content=""></ListBoxItem>
 		<ListBoxItem Content="&lt;&gt; by 董岳、周书雅"></ListBoxItem>
-		<ListBoxItem Content="2019-10-25 ~ "></ListBoxItem>
+		<ListBoxItem Content="2019"></ListBoxItem>
 	</ListBox>
 </Window>

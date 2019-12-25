@@ -14,16 +14,20 @@ namespace UIKit {
 
 	public class PythonInteropProcess : IPythonInteropProcess {
 		public string Start(string commands, bool showShellWindow = false) {
-			Process proc = new Process();
-			ProcessStartInfo psi = new ProcessStartInfo("python", commands) {
-				RedirectStandardOutput = true,
-				CreateNoWindow = !showShellWindow,
-				UseShellExecute = false
-			};
-			proc.StartInfo = psi;
-			proc.Start();
-			string result = proc.StandardOutput.ReadToEnd();
-			proc.WaitForExit();
+			string result = null;
+			using (Process proc = new Process()) {
+				ProcessStartInfo psi = new ProcessStartInfo("python", commands) {
+					RedirectStandardOutput = true,
+					CreateNoWindow = !showShellWindow,
+					UseShellExecute = false
+				};
+				proc.StartInfo = psi;
+				proc.Start();
+				result = proc.StandardOutput.ReadToEnd();
+				proc.WaitForExit();
+			}
+			if (result == null)
+				throw new NullReferenceException();
 			return result;
 		}
 	}

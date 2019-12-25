@@ -28,5 +28,5 @@ def startOperation():
 	else:
 		print('This computer has not installed .NET Core or .NET Framework.')
 
-if __file__ == '__main__':
+if __name__ == '__main__':
 	startOperation()

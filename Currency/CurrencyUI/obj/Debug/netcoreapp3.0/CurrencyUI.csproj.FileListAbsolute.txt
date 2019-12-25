@@ -55,3 +55,10 @@ C:\Users\Lenovo\OneDrive\Study\2019 Fall\Web Crawler with Python\Program\Currenc
 C:\Users\Lenovo\OneDrive\Study\2019 Fall\Web Crawler with Python\Program\Currency\CurrencyUI\obj\Debug\netcoreapp3.0\App.baml
 C:\Users\Lenovo\OneDrive\Study\2019 Fall\Web Crawler with Python\Program\Currency\CurrencyUI\obj\Debug\netcoreapp3.0\LoadingWindow.g.cs
 C:\Users\Lenovo\OneDrive\Study\2019 Fall\Web Crawler with Python\Program\Currency\CurrencyUI\obj\Debug\netcoreapp3.0\LoadingWindow.baml
+C:\Users\Lenovo\OneDrive\Study\2019 Fall\Web Crawler with Python\Program\Python-Web-Crawler-Course-Project\Currency\CurrencyExchange\netcoreapp3.0\CurrencyUI.exe
+C:\Users\Lenovo\OneDrive\Study\2019 Fall\Web Crawler with Python\Program\Python-Web-Crawler-Course-Project\Currency\CurrencyExchange\netcoreapp3.0\CurrencyUI.deps.json
+C:\Users\Lenovo\OneDrive\Study\2019 Fall\Web Crawler with Python\Program\Python-Web-Crawler-Course-Project\Currency\CurrencyExchange\netcoreapp3.0\CurrencyUI.runtimeconfig.json
+C:\Users\Lenovo\OneDrive\Study\2019 Fall\Web Crawler with Python\Program\Python-Web-Crawler-Course-Project\Currency\CurrencyExchange\netcoreapp3.0\CurrencyUI.runtimeconfig.dev.json
+C:\Users\Lenovo\OneDrive\Study\2019 Fall\Web Crawler with Python\Program\Python-Web-Crawler-Course-Project\Currency\CurrencyExchange\netcoreapp3.0\CurrencyUI.dll
+C:\Users\Lenovo\OneDrive\Study\2019 Fall\Web Crawler with Python\Program\Python-Web-Crawler-Course-Project\Currency\CurrencyExchange\netcoreapp3.0\CurrencyUI.pdb
+C:\Users\Lenovo\OneDrive\Study\2019 Fall\Web Crawler with Python\Program\Python-Web-Crawler-Course-Project\Currency\CurrencyUI\obj\Debug\netcoreapp3.0\CurrencyUI.csprojAssemblyReference.cache

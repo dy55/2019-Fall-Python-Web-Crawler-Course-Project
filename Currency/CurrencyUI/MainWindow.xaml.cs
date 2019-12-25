@@ -63,15 +63,19 @@ namespace CurrencyUI {
 		}
 
 		private void AboutItem_Click(object sender, RoutedEventArgs e) {
+			Cursor = Cursors.AppStarting;
 			AboutWindow about = new AboutWindow();
 			about.Visibility = Visibility.Visible;
+			Cursor = Cursors.Arrow;
 		}
 
 		private void StatView_Click(object sender, RoutedEventArgs e) {
+			Cursor = Cursors.AppStarting;
 			StatusBlock.Content = "正在执行操作";
 			SetEvent("正在运行", isIndeterminate: true);
 			LoadingWindow LoadingWindow = new LoadingWindow();
 			LoadingWindow.Visibility = Visibility.Visible;
+			LoadingWindow.Cursor = Cursors.Wait;
 			Thread mainOpThread = new Thread(() => {
 				try {
 					PyInteropUtils.VisualStat();
@@ -83,6 +87,7 @@ namespace CurrencyUI {
 					DisposeEvent();
 					StatusBlock.Content = "就绪";
 					LoadingWindow.Close();
+					Cursor = Cursors.Arrow;
 				}));
 			});
 			mainOpThread.Start();
@@ -95,9 +100,11 @@ namespace CurrencyUI {
 			}
 			if (MessageBox.Show($"确定要查询 {fromCombo.Text} -> 人民币的汇率趋势？", "确认", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
 				return;
+			Cursor = Cursors.AppStarting;
 			StatusBlock.Content = "正在执行操作";
 			LoadingWindow loadingWindow = new LoadingWindow();
 			loadingWindow.Visibility = Visibility.Visible;
+			loadingWindow.Cursor = Cursors.Wait;
 			SetEvent("正在运行", isIndeterminate: true);
 			Thread mainOpThread = new Thread(() => {
 				string targetEx = new string("");
@@ -108,6 +115,7 @@ namespace CurrencyUI {
 				Dispatcher.BeginInvoke(new Action(() => {
 					DisposeEvent();
 					StatusBlock.Content = "就绪";
+					Cursor = Cursors.Arrow;
 					loadingWindow.Close();
 				}));
 			});
@@ -115,8 +123,10 @@ namespace CurrencyUI {
 		}
 
 		private void HelpItem_Click(object sender, RoutedEventArgs e) {
+			Cursor = Cursors.AppStarting;
 			HelpWindow hw = new HelpWindow();
 			hw.Visibility = Visibility.Visible;
+			Cursor = Cursors.Arrow;
 		}
 
 		void ShowExchangeContent(string from, string to, decimal rate) {
@@ -124,7 +134,9 @@ namespace CurrencyUI {
 		}
 
 		private void SearchBtn_Click(object sender, RoutedEventArgs e) {
+			Cursor = Cursors.AppStarting;
 			if (fromBox.Text.Equals("")) {
+				Cursor = Cursors.Arrow;
 				toBox.Text = "";
 				MessageBox.Show("没有输入数值", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
 				return;
@@ -135,6 +147,7 @@ namespace CurrencyUI {
 			fromBox.IsEnabled = false;
 			toCombo.IsEnabled = false;
 			SearchBtn.IsEnabled = false;
+			Cursor = Cursors.Wait;
 			Thread opThread = new Thread(() => {
 				string[] results = new string[3];
 				try {
@@ -161,6 +174,7 @@ namespace CurrencyUI {
 					fromBox.IsEnabled = true;
 					toCombo.IsEnabled = true;
 					SearchBtn.IsEnabled = true;
+					Cursor = Cursors.Arrow;
 					DisposeEvent();
 				}));
 			});

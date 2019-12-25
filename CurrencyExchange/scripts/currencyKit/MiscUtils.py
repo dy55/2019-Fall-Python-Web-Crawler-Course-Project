@@ -1,5 +1,5 @@
 # currencyKit.MiscUtils
-# MiscUtils.py 其他工具混合库
+# MiscUtils.py 杂项工具库
 
 import json
 

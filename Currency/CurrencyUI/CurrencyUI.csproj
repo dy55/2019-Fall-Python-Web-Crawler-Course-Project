@@ -6,10 +6,16 @@
     <UseWPF>true</UseWPF>
     <Authors>dy55</Authors>
     <Company />
+    <ApplicationIcon>exchange.ico</ApplicationIcon>
+    <StartupObject>CurrencyUI.App</StartupObject>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>C:\Users\Lenovo\OneDrive\Study\2019 Fall\Web Crawler with Python\Program\CurrencyExchange\</OutputPath>
+    <OutputPath>..\..\CurrencyExchange</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>..\..\CurrencyExchange\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

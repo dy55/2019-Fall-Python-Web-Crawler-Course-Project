@@ -4,37 +4,7 @@ import os
 import sys
 from difflib import SequenceMatcher	#用于比较字符串相似度进行猜词
 
-import currencyKit
-from currencyKit import CurrencyStatistics
-from currencyKit import CurrencyTrend
-from currencyKit import MiscUtils
-import start
-
-# 命令集元组
-cmds = (
-		'help -h /h hello',
-		'stat -s /s',
-		'rate -r /r',
-		'startgui startui -u /u',
-		'visualstat vstat -vs /vs',
-		'trend -t /t',
-		'visualtrend vtrend -vt /vt',
-		'short -sh /sh',
-		'cnname -cn /cn'
-	)
-
-# 命令描述元组
-description = (
-		'Get Help',
-		'Get statistics of each currency to CNY',
-		'Get exchange rate',
-		'Run Currency GUI',
-		'Get visual statistics of each currency to CNY',
-		'Get specific trend of exchange rate of currency to CNY',
-		'Get specific visual trend of exchange rate of currency to CNY',
-		'Get currency name for short by its Chinese name',
-		'Get Chinese name of currency by its short name'
-	)
+import Commands
 
 def checkCmdSet(cmdSet, inputCmd):
 	for i in cmdSet.split(' '):
@@ -42,132 +12,101 @@ def checkCmdSet(cmdSet, inputCmd):
 			return True
 	return False
 
+class CurrencyHubException(Exception):
+	reason = ''
+	def __init__(self):
+		pass
+
+	def __init__(self, reason:str):
+		self.reason = reason
+
+	def getReason(self):
+		return self.reason
+
+class CommandNotFoundException(CurrencyHubException):
+	pass
+
 # 猜词
 def maybeItIs(cmdname):
-	for i in cmds:
-		for j in i.split(' '):
-			seq = SequenceMatcher(None, cmdname.lower(), j.lower())
-			if seq.ratio() > 0.65:
-				return j
+	for i in Commands.genericCmds:
+		if i[2][1] != -1 or interactive:
+			for j in i[0].split(' '):
+				seq = SequenceMatcher(None, cmdname.lower(), j.lower())
+				if seq.ratio() > 0.65:
+					return j
 
-def help():
-	print('\n-----------------------------------')
-	print('Welcome to Exchange Query Hub!')
-	print('-----------------------------------')
-	print('There are the commands we support:')
-	for i in range(len(cmds)):
-		print(f'{cmds[i]:<30}\t{description[i]}')
-	print('{0:<30}\tExit from the Hub'.format('exit'))
-	print('-----------------------------------')
+def invalidCmdRes(exception:CurrencyHubException, cmdArg:str):
+	print('{0}: '.format(type(exception).__name__), end = '')
+	print(exception.getReason())
+	guess = maybeItIs(cmdArg)
+	if guess != None:
+		print('Did you mean "{0}"?'.format(guess))
 
-def choose(prompt):
-	while True:
-		choice = input('{0} (y/n): '.format(prompt))
-		if choice.lower() == 'y':
-			return True
-		elif choice.lower() == 'n':
-			return False
+# 读取系统参数
+def loadArgs(From):
+	args = []
+	if From < 0:
+		From = 0
+	for i in range(From, len(sys.argv)):
+		args.append(sys.argv[i])
+	return args
 
-# Interactive Operation Functions
-def exchangeRateOp():
-	arg2 = input('From: ')
-	arg3 = input('To: ')
-	amount = input('Amount: ')
-	if amount != '':
-		amount = float(amount)
-		CurrencyStatistics.getExchangeRate(arg2, arg3, amount)
-	else:
-		CurrencyStatistics.getExchangeRate(arg2, arg3)
+# Action Manager
+def actionManager(actionList):
+	if len(actionList) >= 2:
+		if actionList[1] <= 0:
+			if len(actionList) > 2:
+				if not interactive:
+					actionList[0]()
+				else:
+					actionList[2]()
+			else:
+				actionList[0]()
+		else:
+			if interactive or len(sys.argv) - 2 < actionList[1]:
+				if not interactive:
+					print('Too few arguments')
+				if len(actionList) > 2:
+					actionList[2]()
+				return
+			actionList[0](loadArgs(2))
+
+def actionMatcher():
+	for i in Commands.genericCmds:
+		if i[2][1] != -1 or interactive:
+			if checkCmdSet(i[0], cmdArg):
+				actionManager(i[2])
+				return
+	raise CommandNotFoundException('"{0}" is not a command.'.format(cmdArg))
+
+# 匹配操作
+def matchActions():
+	try:
+		actionMatcher()
+	except CommandNotFoundException as e:
+		invalidCmdRes(e, cmdArg)
+
+interactive = False # 是否在交互模式下
+
+global cmdArg
 
 if __name__ == '__main__':
 	if len(sys.argv) == 1:
-		# Interactive Mode
+		interactive = True
+		# ---------------- Interactive Mode ----------------- #
 		cmdLineNum = 1
-		help()
+		Commands.initialize()
 		while True:
-			cmdArg = input('cmd({0:03})> '.format(cmdLineNum))
+			cmdArg = input('cmd:{0:03}> '.format(cmdLineNum))
 			cmdLineNum += 1
 			if cmdArg == '':
 				continue
-			if cmdArg.lower() == 'exit':		# exit
-				print('Exiting...')
-				sys.exit(0)
-			if checkCmdSet(cmds[0], cmdArg):	# help
-				help()
-			elif checkCmdSet(cmds[1], cmdArg):	# stat
-				CurrencyStatistics.getStat()
-			elif checkCmdSet(cmds[2], cmdArg):	# rate
-				exchangeRateOp()
-			elif checkCmdSet(cmds[3], cmdArg):	# startgui
-				start.startOperation()
-			elif checkCmdSet(cmds[4], cmdArg):	# visualstat
-				CurrencyStatistics.visualStat(choose('Save the picture of figure?'))
-			elif checkCmdSet(cmds[5], cmdArg):	# trend
-				CurrencyTrend.trend(input('From: '))
-			elif checkCmdSet(cmds[6], cmdArg):	# visualtrend
-				CurrencyTrend.visualTrend(input('From: '), saveFig=choose('Save the figure picture?'));
-			elif checkCmdSet(cmds[7], cmdArg):	# short
-				MiscUtils.CurrencyNameKit.CnToShort(input('CN Name: '))
-			elif checkCmdSet(cmds[8], cmdArg):	# cnname
-				MiscUtils.CurrencyNameKit.ShortToCn(input('Short Name: '))
-			else:								# other
-				print('Unknown Command "{0}"'.format(cmdArg))
-				guess = maybeItIs(cmdArg)
-				if guess != None:
-					print('Did you mean "{0}"?'.format(guess))
+			
+			# Match actions
+			matchActions()
 			print()
-
-	# Shell Mode
-	cmdArg = sys.argv[1]
-
-	if checkCmdSet(cmds[0], cmdArg):		# help
-		help()
-	elif checkCmdSet(cmds[1], cmdArg):		# stat
-		currencyKit.CurrencyStatistics.getStat()
-	elif checkCmdSet(cmds[2], cmdArg):		# rate
-		if len(sys.argv) >= 5:
-			amount = float(sys.argv[4])
-			currencyKit.CurrencyStatistics.getExchangeRate(sys.argv[2], sys.argv[3], amount)
-		elif len(sys.argv) == 4:
-			currencyKit.CurrencyStatistics.getExchangeRate(sys.argv[2], sys.argv[3])
-		else:
-			print('Too few arguments')
-			exchangeRateOp()
-	elif checkCmdSet(cmds[3], cmdArg):		# startgui
-		start.startOperation()
-	elif checkCmdSet(cmds[4], cmdArg):		# visualstat
-		if len(sys.argv) > 2 and sys.argv[2] == 'donotsave':
-			currencyKit.CurrencyStatistics.visualStat(False)
-		else:
-			currencyKit.CurrencyStatistics.visualStat(True)
-	elif checkCmdSet(cmds[5], cmdArg):		# trend
-		if len(sys.argv) < 3:
-			print('Too few arguments')
-			CurrencyTrend.trend(input('From: '))
-		else:
-			CurrencyTrend.trend(sys.argv[2])
-	elif checkCmdSet(cmds[6], cmdArg):		# visualtrend
-		if len(sys.argv) < 3:
-			print('Too few arguments')
-			CurrencyTrend.visualTrend(input('From: '), saveFig=choose('Save the figure picture?'))
-		elif len(sys.argv) >= 4 and sys.argv[3] == 'donotsave':
-			CurrencyTrend.visualTrend(sys.argv[2], saveFig=False)
-		else:
-			CurrencyTrend.visualTrend(sys.argv[2])
-	elif checkCmdSet(cmds[7], cmdArg):		# short
-		if len(sys.argv) < 3:
-			print('Too few arguments')
-			MiscUtils.CurrencyNameKit.CnToShort(input('CN Name: '))
-		else:
-			MiscUtils.CurrencyNameKit.CnToShort(sys.argv[2])
-	elif checkCmdSet(cmds[8], cmdArg):		# cnname
-		if len(sys.argv) < 3:
-			print('Too few arguments')
-			MiscUtils.CurrencyNameKit.ShortToCn(input('Short Name: '))
-		else:
-			MiscUtils.CurrencyNameKit.ShortToCn(sys.argv[2])
-	else:									# other
-		print('Unknown Command "{0}"'.format(cmdArg))
-		guess = maybeItIs(cmdArg)
-		if guess != None:
-			print('Did you mean "{0}"?'.format(guess))
+	else:
+		# ------------------ Shell Mode --------------------- #
+		cmdArg = sys.argv[1]
+		matchActions()
+		print()
