@@ -1,2 +1,3 @@
 # Currency Exchange Tool
- Python web crawler course project - Currency Exchange Query
+ 2019 Fall Semester Course Project
+ Currency Exchange Query Tool
