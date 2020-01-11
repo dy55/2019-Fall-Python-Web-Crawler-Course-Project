@@ -44,12 +44,10 @@ def invalidCmdRes(exception:CurrencyHubException, cmdArg:str):
 
 # 读取系统参数
 def loadArgs(From):
-	args = []
 	if From < 0:
 		From = 0
 	for i in range(From, len(sys.argv)):
-		args.append(sys.argv[i])
-	return args
+		yield sys.argv[i]
 
 # Action Manager
 def actionManager(actionList):
@@ -69,7 +67,7 @@ def actionManager(actionList):
 				if len(actionList) > 2:
 					actionList[2]()
 				return
-			actionList[0](loadArgs(2))
+			actionList[0](list(loadArgs(2)))
 
 def actionMatcher():
 	for i in Commands.genericCmds:
