@@ -6,4 +6,4 @@
 | --: | :-- |
 | Written in | Python (CLI & Execution Module), C# (GUI & InterOp Module) |
 | Developers | dy55, Zhou Shuya |
-| Development Environment | Visual Studio, Python IDLE |
+| Development Environments | Visual Studio, Python IDLE |
